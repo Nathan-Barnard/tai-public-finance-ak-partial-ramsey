@@ -1,0 +1,115 @@
+# Source manifest for CS011 blocks G0/N0/N1
+#
+# SHA-256 of every authoritative input, recorded per the CS011 non-tradeable
+# structural gate on provenance.
+#
+# The digests under `inputs` are the digests of the exact bytes THIS implementation
+# was written against. For six of the eight inputs the file on disk is byte-identical
+# to what was read, confirmed by re-hashing. For the two files listed under
+# `concurrent_edit_observed` the workspace copy is a moving target; see that section.
+
+specification:
+  id: CS011
+  version_bound_by_dispatch: '0.4'
+  status: draft
+  problem_id: CP011
+  decision_id: CD014
+  blocks_implemented: [G0, N0, N1]
+  result_use_ceiling: exploratory_only
+
+source_workspace: "/Users/nathanbarnard/Documents/TAI public finnace codex"
+recorded_utc: "2026-09-04T00:12:20Z"
+
+# --- Concurrent edit of the source workspace ---------------------------------
+# The source research workspace was being edited by another process while this
+# implementation was written. CS011 advanced from v0.4 (646 lines) to v0.5, and was
+# observed at three distinct digests within a few minutes:
+#   646 lines  bfa7bbc8b992583160090db0207c299050538faa666097ef528578ffb64b9d57  (v0.4, read)
+#   720 lines  6f16e60cc0f78130789386506adab2e09d14c55b346727458c433c21e4b52919  (v0.5)
+#   739 lines  800d237c28019ad032b9ef17f93171d973266ad7093660ad587de9e55efbd419  (v0.5, sampled at recorded_utc)
+#
+# Disposition: PROCEED, pinned to v0.4 as dispatched. Rationale, verified twice by
+# direct inspection of the live file: every observed change is additive and downstream.
+# v0.5 inserts an "N8 - paper-facing exhibit package" block and extends the dependency
+# chain to G0->...->N7->N8. The following were compared against the v0.4 text actually
+# read and found unchanged: the G0, N0 and N1 block contracts; the five open activation
+# gates; and the benchmark and limiting-case contract. Nothing in scope moved.
+#
+# This is recorded rather than silently absorbed because provenance is a non-tradeable
+# gate, and because an implementation branch pinned to a superseded specification
+# version is a fact the independent reviewer must see.
+concurrent_edit_observed:
+  - path: "computation/specifications/small-open-single-ak-and-ak-or-partial-transition--CS011.md"
+    version_implemented_against: '0.4'
+    version_on_disk_at_recorded_utc: '0.5'
+    sha256_implemented_against: "bfa7bbc8b992583160090db0207c299050538faa666097ef528578ffb64b9d57"
+    sha256_sampled_at_recorded_utc: "800d237c28019ad032b9ef17f93171d973266ad7093660ad587de9e55efbd419"
+    stable: false
+    impact_on_blocks_G0_N0_N1: none
+  - path: "computation/small-open-single-ak-and-ak-or-partial-transition-work-plan--CP011.md"
+    sha256_implemented_against: "0ed00c63d591165f"
+    sha256_prefix_only: true
+    sha256_prefix_note: >-
+      Only a 16-hex-character prefix of the version read was captured, before the file
+      changed. The full digest of the exact bytes read is therefore unrecoverable. The
+      version read had 336 lines; the addition is a "Paper-facing figure stage" section
+      describing the N8 exhibit sequence. The computational architecture, execution map,
+      and implementation-unit table - the parts bearing on G0/N0/N1 - are unchanged.
+    sha256_sampled_at_recorded_utc: "5dfdaa2170f8f9ddf685c1c66e0bba98fb2a2fea5830f3d995e19ded913bf046"
+    lines_read: 336
+    lines_at_recorded_utc: 412
+    stable: false
+    impact_on_blocks_G0_N0_N1: none
+
+# --- Digests of the bytes implemented against --------------------------------
+inputs:
+  - path: "AGENTS.md"
+    role: workspace_operating_guide
+    sha256: "034c086efe9cea3561ea9f24dcd27ccf3dfe646020eeb0a6ba81d67c64572820"
+    bytes: 17014
+    lines: 209
+    reread_identical: true
+  - path: "computation/AGENTS.md"
+    role: computation_workstream_guide
+    sha256: "209f6969da247c3b6d0bf77fd3a6e2706a7afc04fd13d47772b7883e2560e99b"
+    bytes: 10680
+    lines: 72
+    reread_identical: true
+  - path: "computation/decisions/low-dimensional-continuation-and-collocation-before-constrained-or-global-methods--CD014.md"
+    role: method_decision
+    sha256: "42e5d7d4712fddb4508733dd701d747106a4475b8a4769c87d418aa82f4f4467"
+    bytes: 5217
+    lines: 93
+    reread_identical: true
+  - path: "computation/error-handling-and-result-use.md"
+    role: error_and_result_use_policy
+    sha256: "9ee3e42faba99ea0dd79e7b656f879d5a8445f5a4604eb0fc333efdead26d607"
+    bytes: 17564
+    lines: 268
+    reread_identical: true
+  - path: "research-notes/single-ak-small-open-full-automation-solution.md"
+    role: single_ak_theory_packet
+    sha256: "20698971555c39d288d85c8c46c5fbbcad0bac6d8eb4f81a6dce1a53fd68bb2e"
+    bytes: 64005
+    lines: 1806
+    reread_identical: true
+  - path: "research-notes/ak-or-partial-automation-small-open-ramsey-derivation.md"
+    role: two_mark_theory_packet
+    sha256: "f6593a044dd261d4d79f6f37d64b70b70a5f791a77abe5da48c6b57124942764"
+    bytes: 44251
+    lines: 1172
+    reread_identical: true
+  # The two files below are under concurrent edit; see concurrent_edit_observed above
+  # for the digest each was implemented against and the verified scope impact.
+  - path: "computation/specifications/small-open-single-ak-and-ak-or-partial-transition--CS011.md"
+    role: governing_specification
+    sha256: "bfa7bbc8b992583160090db0207c299050538faa666097ef528578ffb64b9d57"
+    bytes: 37729
+    lines: 646
+    reread_identical: false
+  - path: "computation/small-open-single-ak-and-ak-or-partial-transition-work-plan--CP011.md"
+    role: work_plan
+    sha256: "0ed00c63d591165f"
+    sha256_prefix_only: true
+    lines: 336
+    reread_identical: false

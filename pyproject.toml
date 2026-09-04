@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ak-partial-ramsey"
+version = "0.1.0"
+description = "Equation core, independent evaluator, and successor services for the small-open single-AK and AK-or-partial transition computation (CS011 v0.4, blocks G0/N0/N1)."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Nathan Barnard" }]
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+]
+
+[project.scripts]
+ak-partial-ramsey = "ak_partial_ramsey.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ak_partial_ramsey"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "N", "RUF"]
+ignore = [
+    # Economic notation (single-letter and capitalised names) mirrors the theory packets
+    # verbatim; renaming would break the equation crosswalk that G0 exists to preserve.
+    "N803", "N806", "E741",
+]
