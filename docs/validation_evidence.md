@@ -85,10 +85,14 @@ Test distribution:
 
 ### Clean-checkout reproduction
 
-Commit `02d22fb` (G0/N0) was checked out into a detached worktree and its 101 tests plus
-`ruff check` were run there with no successor, assembly, reporting or CLI module present.
-Both passed, confirming that the G0/N0 commit is self-consistent rather than only passing
-against the final tip.
+Two reproductions were run in detached worktrees, both from the lockfile:
+
+1. **Full validation at the branch head.** The complete sequence above — `uv sync
+   --frozen`, 204 tests, `ruff check`, `ruff format --check`, and all three CLI stages —
+   was re-run in a fresh checkout. Everything passed, with identical results.
+2. **G0/N0 commit in isolation.** Commit `02d22fb` was checked out with no successor,
+   assembly, reporting or CLI module present. Its 101 tests and `ruff check` both passed,
+   confirming that commit is self-consistent rather than only passing against the tip.
 
 ---
 
