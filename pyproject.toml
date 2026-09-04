@@ -38,7 +38,26 @@ src = ["src", "tests"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "N", "RUF"]
 ignore = [
-    # Economic notation (single-letter and capitalised names) mirrors the theory packets
-    # verbatim; renaming would break the equation crosswalk that G0 exists to preserve.
-    "N803", "N806", "E741",
+    # --- Economic notation ---------------------------------------------------------
+    # Names like q_F, V_F_e, H_P, K_star, A_bar and I mirror the theory packets
+    # character for character. G0 exists to preserve exactly that correspondence, and
+    # docs/equation_crosswalk.md maps each name to its numbered equation. Renaming them
+    # to satisfy a casing convention would break the one property this block is for.
+    "N802",  # function names: V_F, H_P, X_F, C_F, q_P, ...
+    "N803",  # argument names: K, J, Z, I, ...
+    "N806",  # local variables: A, J, X, U, D, ...
+    "N815",  # dataclass fields: q_F, K_star, A_bar, I_P, ...
+    "E741",  # `I` is the task share throughout both packets
+    # --- Exception naming ----------------------------------------------------------
+    # BranchFailure, RankFailure, EvaluatorMismatch and RefinementInstability name
+    # dispositions from computation/error-handling-and-result-use.md. The policy's own
+    # vocabulary is "branch failure" and "rank failure"; an -Error suffix would obscure
+    # the link to the governing document.
+    "N818",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# `actual == pytest.approx(expected)` is the documented pytest idiom. Ruff reads it as a
+# Yoda condition and would have us invert it, which reads worse and is not how pytest
+# documents the comparison.
+"tests/*" = ["SIM300"]
