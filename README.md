@@ -91,8 +91,21 @@ These rules are enforced in code and in tests, not left to convention.
 - Branch selection, root rejection, and every domain boundary are surfaced in the returned
   diagnostics, never hidden inside a convenience function.
 
+## Documentation
+
+| File | Contents |
+|---|---|
+| [`docs/equation_crosswalk.md`](docs/equation_crosswalk.md) | every implemented equation mapped to its numbered equation in the theory packets, plus the three notation collisions between them |
+| [`docs/scale_map.md`](docs/scale_map.md) | units, timing conventions, domains, transversality conditions, and the scaling this implementation applies |
+| [`docs/source_manifest.yaml`](docs/source_manifest.yaml) | SHA-256 of every authoritative input, and the record of concurrent edits to the source workspace |
+| [`docs/validation_evidence.md`](docs/validation_evidence.md) | validation commands and results, every enumerated root with its disposition, cross-route differences, and resource use |
+
 ## Provenance
 
 `docs/source_manifest.yaml` records the SHA-256 hash of each authoritative input read
 while writing this implementation. Every report emitted by the CLI carries the
 source-manifest hash, the configuration hash, and the package and solver versions.
+
+No substantive disagreement was found between the two theory packets on any equation,
+unit, timing convention, or interface used by these blocks. Three notation collisions
+between them are recorded in the crosswalk.
