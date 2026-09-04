@@ -113,3 +113,55 @@ inputs:
     sha256_prefix_only: true
     lines: 336
     reread_identical: false
+
+# --- Final verification at end of implementation ------------------------------
+# Re-hashed every input after the last commit. The decisive result: BOTH THEORY
+# PACKETS ARE BYTE-IDENTICAL to the versions read and implemented against. Every
+# equation, fixture, root selector, event map, envelope, and recovery identity in
+# this repository derives from those two files, and neither moved.
+#
+# Also unchanged: the computation workstream guide, the method decision CD014, and
+# the error-handling and result-use policy.
+#
+# Two governance/planning files drifted further; neither contributes an equation.
+final_verification:
+  performed_utc: "2026-09-04T01:13:11Z"
+  theory_packets_unchanged: true
+  unchanged:
+    - path: "research-notes/single-ak-small-open-full-automation-solution.md"
+      sha256: "20698971555c39d288d85c8c46c5fbbcad0bac6d8eb4f81a6dce1a53fd68bb2e"
+      role: single_ak_theory_packet
+    - path: "research-notes/ak-or-partial-automation-small-open-ramsey-derivation.md"
+      sha256: "f6593a044dd261d4d79f6f37d64b70b70a5f791a77abe5da48c6b57124942764"
+      role: two_mark_theory_packet
+    - path: "computation/AGENTS.md"
+      sha256: "209f6969da247c3b6d0bf77fd3a6e2706a7afc04fd13d47772b7883e2560e99b"
+    - path: "computation/decisions/low-dimensional-continuation-and-collocation-before-constrained-or-global-methods--CD014.md"
+      sha256: "42e5d7d4712fddb4508733dd701d747106a4475b8a4769c87d418aa82f4f4467"
+    - path: "computation/error-handling-and-result-use.md"
+      sha256: "9ee3e42faba99ea0dd79e7b656f879d5a8445f5a4604eb0fc333efdead26d607"
+  changed_since_read:
+    - path: "AGENTS.md"
+      sha256_read: "034c086efe9cea3561ea9f24dcd27ccf3dfe646020eeb0a6ba81d67c64572820"
+      sha256_final: "8155cdddb71b977b64164d6d171b9322f904edeefacbe229a9f3e4b662357751"
+      role: workspace_operating_guide
+      contributes_equations: false
+      note: >-
+        Workspace-wide operating guide. Read for boundaries and routing, not for
+        mathematics. No equation, unit, or interface in this repository derives from it.
+    - path: "computation/specifications/small-open-single-ak-and-ak-or-partial-transition--CS011.md"
+      sha256_implemented_against: "bfa7bbc8b992583160090db0207c299050538faa666097ef528578ffb64b9d57"
+      sha256_final: "1d6682e7a34f6b818f65763da2d9e04c8c45d51801d5ca75371f54b19f1fd0ff"
+      version_final: '0.5'
+      contributes_equations: false
+      note: >-
+        Still advancing; 749 lines at final check against the 646 read. Verified twice
+        during implementation that the G0/N0/N1 block contracts, the five activation
+        gates, and the benchmark contract were untouched by the change to v0.5. The
+        equations themselves live in the two theory packets, which did not move.
+    - path: "computation/small-open-single-ak-and-ak-or-partial-transition-work-plan--CP011.md"
+      sha256_final: "b9e947e25aa66c933e98ca477e1e88c1ee1f560471e305e36c3d2f766c49e805"
+      contributes_equations: false
+      note: >-
+        Still advancing; 425 lines at final check against the 336 read. Additions are the
+        downstream N8 exhibit stage.
